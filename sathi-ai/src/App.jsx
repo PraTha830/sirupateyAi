@@ -1,12 +1,9 @@
 import { useState } from 'react'
+import LandingPage from "./LandingPage";
 import './App.css'
 
 function App() {
-
-  return (
-    <>
-    </>
-  )
+  return <LandingPage />;
 }
 
 export default App
