@@ -1,5 +1,8 @@
+
 import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import LandingPage from "./LandingPage";
+
 import Sidebar from "./components/Sidebar/Sidebar";
 import MainPage from "./layout/Mainpage";                       // ✅ correct path/case
 import RightRail from "./components/common/RightRail";          // ✅
@@ -86,4 +89,5 @@ function App() {
   );
 }
 
-export default App;
+
+export default App
