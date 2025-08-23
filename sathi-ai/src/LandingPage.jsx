@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useAuth } from "./auth/AuthContext";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const LandingPage = () => {
   const [currentView, setCurrentView] = useState('welcome'); // 'welcome', 'login', 'signup'
@@ -10,6 +12,11 @@ const LandingPage = () => {
   });
   const [showPassword, setShowPassword] = useState(false);
 
+  const { login } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/chat";
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -17,9 +24,18 @@ const LandingPage = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  // ✅ IMPORTANT: Login then navigate; no alert popups.
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert(`${currentView === 'login' ? 'Login' : 'Signup'} successful!`);
+    try {
+      // For now, your backend expects { user_id: "<email>" }
+      await login({ email: formData.email });
+      navigate(from, { replace: true }); // go to /chat or original attempted path
+    } catch (err) {
+      console.error(err);
+      // Optionally set an inline error state and show a message in UI
+      // setError("Authentication failed");
+    }
   };
 
   const theme = {

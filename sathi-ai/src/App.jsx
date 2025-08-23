@@ -19,6 +19,9 @@ import "./index.css";
 import "./layout/layout.css";                                   // ✅ layout css
 import "./components/Roadmap/Roadmap.css";                      // ✅ roadmap css
 
+import { AuthProvider, useAuth } from "./auth/AuthContext";
+import ProtectedRoute from "./auth/ProtectedRoute";
+
 // ⬇️  Existing app UI, unchanged — just wrapped into AppShell
 function AppShell() {
   const [collapsed, setCollapsed] = useState(false);
@@ -94,16 +97,45 @@ function AppShell() {
   );
 }
 
-// ⬇️ New router layer: "/" → LandingPage, "/chat" → AppShell
+function RequireAuthOutlet() {
+  const { authed } = useAuth();
+  const location = useLocation();
+  return authed ? <AppShell /> : <Navigate to="/landing" replace state={{ from: location }} />;
+}
+
+// // ⬇️ New router layer: "/" → LandingPage, "/chat" → AppShell
+// export default function App() {
+//   return (
+//     <Router>
+//       <Routes>
+//         <Route path="/" element={<LandingPage />} />
+//         <Route path="/chat" element={<AppShell />} />
+//         {/* Optional: redirect unknown routes to landing */}
+//         <Route path="*" element={<Navigate to="/" replace />} />
+//       </Routes>
+//     </Router>
+//   );
+// }
+
+// ⬇️ New router layer: "/" → LandingPage, "/chat" → Protected AppShell
 export default function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/chat" element={<AppShell />} />
-        {/* Optional: redirect unknown routes to landing */}
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
-    </Router>
+    <AuthProvider>
+      <Router>
+        <Routes>
+          {/* Public */}
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/landing" element={<LandingPage />} />
+
+          {/* Private (guarded) */}
+          <Route path="/chat" element={<ProtectedRoute />}>
+            <Route index element={<AppShell />} />
+          </Route>
+
+          {/* Optional: redirect unknown routes to landing */}
+          <Route path="*" element={<Navigate to="/landing" replace />} />
+        </Routes>
+      </Router>
+    </AuthProvider>
   );
 }

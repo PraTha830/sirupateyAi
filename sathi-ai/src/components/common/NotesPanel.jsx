@@ -23,13 +23,13 @@ export default function NotesPanel({
       </div>
 
       {/* Optional freeform text box to jot personal notes */}
-      {showEditor && (
+      {/* {showEditor && (
         <textarea
           value={value}
           onChange={(e) => onChange(e.target.value)}
           placeholder="Capture notes, tasks, or reminders here…"
         />
-      )}
+      )} */}
 
       <style>{`
         .notes-panel { display: grid; gap: 12px; }
