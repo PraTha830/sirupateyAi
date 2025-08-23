@@ -1,21 +1,26 @@
-
 import { useState } from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import LandingPage from "./LandingPage";
 
 import Sidebar from "./components/Sidebar/Sidebar";
-import MainPage from "./layout/Mainpage";                       // ✅ correct path/case
+import MainPage from "./layout/Mainpage";                       // ✅
 import RightRail from "./components/common/RightRail";          // ✅
 import NotesPanel from "./components/common/NotesPanel";        // ✅
 import ChatDock from "./components/common/ChatDock";            // ✅
-import RoadmapPage from "./components/Roadmap/Roadmap";         // ✅ uses your Roadmap.jsx
+import RoadmapPage from "./components/Roadmap/Roadmap";         // ✅ uses  Roadmap.jsx
 
 import "./App.css";
 import "./index.css";
 import "./layout/layout.css";                                   // ✅ layout css
 import "./components/Roadmap/Roadmap.css";                      // ✅ roadmap css
 
-function App() {
+// ⬇️  Existing app UI, unchanged — just wrapped into AppShell
+function AppShell() {
   const [collapsed, setCollapsed] = useState(false);
   const [active, setActive] = useState("chat"); // "chat" | "notes" | "reminder" | "calendar" | "career" | "roadmap" | "tips"
 
@@ -89,5 +94,16 @@ function App() {
   );
 }
 
-
-export default App
+// ⬇️ New router layer: "/" → LandingPage, "/chat" → AppShell
+export default function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/chat" element={<AppShell />} />
+        {/* Optional: redirect unknown routes to landing */}
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </Router>
+  );
+}
