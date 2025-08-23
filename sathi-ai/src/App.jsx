@@ -1,5 +1,7 @@
 import { useState } from 'react'
 
+import LandingPage from "./LandingPage";
+
 import Sidebar from "./components/Sidebar/Sidebar";
 import './App.css'
 
