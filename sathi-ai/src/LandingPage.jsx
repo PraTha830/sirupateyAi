@@ -9,6 +9,7 @@ const LandingPage = () => {
     confirmPassword: ''
   });
   const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (e) => {
     setFormData({
@@ -17,9 +18,52 @@ const LandingPage = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert(`${currentView === 'login' ? 'Login' : 'Signup'} successful!`);
+    
+    if (currentView === 'login') {
+      setIsLoading(true);
+      
+      try {
+        // Call the authentication API
+        const response = await fetch('http://127.0.0.1:8000/auth/token', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            user_id: formData.email // Using email as user_id
+          }),
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          
+          // Store the token in session storage
+          sessionStorage.setItem('access_token', data.access_token);
+          sessionStorage.setItem('token_type', data.token_type);
+          sessionStorage.setItem('user_email', formData.email);
+          
+          // Redirect to chat page
+          window.location.href = '/chat';
+          
+        } else {
+          // Handle error response
+          const errorData = await response.json();
+          alert('Login failed: ' + (errorData.detail || 'Invalid credentials'));
+        }
+        
+      } catch (error) {
+        console.error('Login error:', error);
+        alert('Login failed: Network error. Please try again.');
+      } finally {
+        setIsLoading(false);
+      }
+      
+    } else {
+      // Handle signup
+      alert('Signup successful!');
+    }
   };
 
   const theme = {
@@ -343,29 +387,39 @@ const LandingPage = () => {
 
           <button
             type="submit"
+            disabled={isLoading}
             style={{
               width: '100%',
               padding: '14px',
-              background: 'linear-gradient(135deg, #00d4aa, #667eea)',
+              background: isLoading 
+                ? 'linear-gradient(135deg, #6b7280, #9ca3af)' 
+                : 'linear-gradient(135deg, #00d4aa, #667eea)',
               color: 'white',
               border: 'none',
               borderRadius: '10px',
               fontSize: '16px',
               fontWeight: '600',
-              cursor: 'pointer',
+              cursor: isLoading ? 'not-allowed' : 'pointer',
               transition: 'all 0.3s ease',
               boxShadow: '0 4px 15px rgba(0,212,170,0.3)'
             }}
             onMouseOver={(e) => {
-              e.target.style.transform = 'translateY(-2px)';
-              e.target.style.boxShadow = '0 8px 25px rgba(0,212,170,0.4)';
+              if (!isLoading) {
+                e.target.style.transform = 'translateY(-2px)';
+                e.target.style.boxShadow = '0 8px 25px rgba(0,212,170,0.4)';
+              }
             }}
             onMouseOut={(e) => {
-              e.target.style.transform = 'translateY(0)';
-              e.target.style.boxShadow = '0 4px 15px rgba(0,212,170,0.3)';
+              if (!isLoading) {
+                e.target.style.transform = 'translateY(0)';
+                e.target.style.boxShadow = '0 4px 15px rgba(0,212,170,0.3)';
+              }
             }}
           >
-            {currentView === 'login' ? 'Sign In' : 'Create Account'}
+            {isLoading 
+              ? 'Signing In...' 
+              : (currentView === 'login' ? 'Sign In' : 'Create Account')
+            }
           </button>
         </form>
 
