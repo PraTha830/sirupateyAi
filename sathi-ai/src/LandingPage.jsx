@@ -44,8 +44,8 @@ const LandingPage = () => {
           sessionStorage.setItem('token_type', data.token_type);
           sessionStorage.setItem('user_email', formData.email);
           
-          // Redirect to chat page
-          window.location.href = '/chat';
+          // Redirect to onboarding page
+          window.location.href = '/onboarding';
           
         } else {
           // Handle error response
