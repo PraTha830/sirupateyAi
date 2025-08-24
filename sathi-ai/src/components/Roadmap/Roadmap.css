@@ -1,0 +1,154 @@
+/* Roadmap layout */
+.roadmap-grid {
+  display: grid;
+  gap: 52px;                 /* more breathing room between lanes */
+  margin-top: 20px;
+}
+
+/* Lane */
+.lane-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin: 6px 0 14px;
+}
+
+/* ===== 3 cards with a dedicated, centered arrow column between them ===== */
+.lane-row {
+  --arrow-col: clamp(56px, 6vw, 92px);      /* arrow column width */
+  --card-min:  min(36vw, 520px);            /* cards grow but have a nice min */
+  display: grid;
+  grid-template-columns:
+    minmax(340px, 1fr) var(--arrow-col)
+    minmax(340px, 1fr) var(--arrow-col)
+    minmax(340px, 1fr);
+  column-gap: 36px;                          /* space around arrow columns */
+  align-items: stretch;                      /* let arrow columns match card height */
+}
+
+/* Card column = label + card */
+.lane-cell {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  row-gap: 10px;
+  min-width: 340px;                          /* wider by default */
+}
+
+/* Labels */
+.lane-label {
+  text-align: left;
+  font-weight: 700;
+  color: var(--fg);
+  opacity: .85;
+  letter-spacing: .2px;
+}
+
+/* ===== Arrow column (perfectly centered between cards) ===== */
+.arrow-cell {
+  position: relative;
+  align-self: stretch;                        /* fill the full row height */
+}
+
+/* faint connector lines from each card edge to the arrow */
+/* .arrow-cell::before,
+.arrow-cell::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  height: 2px;
+  width: calc(50% - 14px);                    
+  background: #22c1b6;
+  opacity: .45;
+}
+.arrow-cell::before { left: 0; }
+.arrow-cell::after  { right: 0; } */
+
+/* the arrow glyph itself — pinned dead center */
+.arrow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 30px;
+  line-height: 1;
+  color: #22c1b6;
+  font-weight: 800;
+  pointer-events: none;
+}
+
+/* ===== Stage cards — roomier ===== */
+.stage-card {
+  border-radius: 14px;
+  padding: 18px 20px;
+  box-shadow: var(--shadow-2);
+  background: var(--card);
+  color: var(--fg);
+  min-height: 260px;                           /* taller */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.stage-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.stage-card strong { font-size: 1.06rem; }
+
+.stage-card .summary {
+  flex: 1;
+  margin: 10px 0 12px;
+  font-size: 0.98rem;
+  line-height: 1.45;
+}
+
+.stage-card .links a {
+  display: inline-block;
+  margin-right: 12px;
+  font-size: 0.9rem;
+  color: #22d3ee;
+}
+
+.stage-card .actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+.stage-card .actions button {
+  border: none;
+  padding: 9px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  background: color-mix(in oklab, var(--card), black 8%);
+  color: var(--fg);
+  box-shadow: var(--shadow-1);
+}
+
+/* status badges */
+.badge { font-size: 0.78rem; padding: 4px 10px; border-radius: 999px; background: #9ca3af33; }
+.badge.in-progress { background: #34d39955; }
+.badge.done        { background: #10b98155; }
+
+/* colored borders */
+.stage-amber { border-left: 4px solid #fbbf24; }
+.stage-green { border-left: 4px solid #34d399; }
+.stage-cyan  { border-left: 4px solid #22d3ee; }
+
+/* edit textarea */
+.stage-card .edit textarea {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid #00000022;
+  padding: 12px;
+  background: var(--bg);
+  color: var(--fg);
+  resize: vertical;
+}
+
+/* Responsive: stack on small screens */
+@media (max-width: 1100px) {
+  .lane-row { grid-template-columns: 1fr; row-gap: 14px; }
+  .arrow-cell { display: none; }
+  .lane-cell { min-width: 0; }
+}
