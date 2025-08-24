@@ -1,5 +1,5 @@
+/* ---------- MainPage layout (mp) ---------- */
 .mp {
-  /* margin-left: var(--content-offset); */
   padding: 24px;
   transition: margin-left 200ms ease;
   min-height: 100vh;
@@ -21,36 +21,47 @@
   border: 2px solid color-mix(in oklab, var(--bg), white 12%);
 }
 
-/* main + right rail grid */
+/* ---------- main + right rail grid ---------- */
 .mp__grid {
   display: grid;
-  grid-template-columns: 1fr minmax(260px, 320px);
-  gap: 20px;
+  /* wider main column + a fixed rail column */
+  grid-template-columns: minmax(880px, 1fr) 360px;
+  column-gap: 48px;                 /* <- more room so rail never crowds */
+  align-items: start;
 }
-.mp__main {
-  background: transparent;
-}
+
+/* main column */
+.mp__main { background: transparent; position: relative; z-index: 0; }
+
+/* right rail sits ONLY in its column */
 .mp__rail {
+  position: sticky;
+  top: 16px;
+  height: fit-content;
   background: transparent;
+  z-index: 0;                       /* keep it beneath modals/tooltips */
+  box-sizing: border-box;
 }
+
+/* force all rail children to respect the column width */
+.mp__rail > * { width: 100% !important; max-width: 100% !important; }
+.mp__rail * { box-sizing: border-box; }
 
 /* notes above chat */
-.mp__notes {
-  margin-top: 20px;
-}
-.mp__chat {
-  position: sticky;
-  bottom: 12px;
-  margin-top: 16px;
-}
-@media (max-width: 980px) {
-  .mp__grid { grid-template-columns: 1fr; }
-  .mp__rail { order: 2; }
+.mp__notes { margin-top: 20px; }
+
+/* chat dock kept near bottom when present */
+.mp__chat { position: sticky; bottom: 12px; margin-top: 16px; }
+
+/* stack on narrow screens */
+@media (max-width: 1200px) {
+  .mp__grid { grid-template-columns: 1fr; column-gap: 20px; }
+  .mp__rail { position: static; }
 }
 
-/* Center the page content on wide screens */
+/* center page content on wide screens */
 .mp__grid, .mp__header, .mp__notes, .mp__chat {
-  max-width: 1200px;
+  max-width: 1320px;
   margin: 0 auto;
   width: 100%;
 }

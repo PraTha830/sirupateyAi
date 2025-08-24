@@ -1,21 +1,21 @@
 import { useState } from "react";
 import "./Sidebar.css";
 
-export function Sidebar({
+export default function Sidebar({
   items = [
-    { key: "chat", label: "Sathi Chat", icon: "💬" },
-    { key: "notes", label: "Note Taker", icon: "📝" },
-    { key: "reminder", label: "Reminder", icon: "⏰" },
-    { key: "calendar", label: "Calendar", icon: "📅" },
-    { key: "career", label: "Career Planner", icon: "🎯" },
-    { key: "roadmap", label: "Roadmap", icon: "🗺️" },
-    { key: "tips", label: "Tips and Tricks", icon: "💡" },
+    { key: "chat",     label: "Sathi Chat",     icon: "💬" },
+    { key: "notes",    label: "Note Taker",     icon: "📝" },
+    { key: "reminder", label: "Reminder",       icon: "⏰" },
+    { key: "calendar", label: "Calendar",       icon: "📅" },
+    { key: "career",   label: "Career Planner", icon: "🎯" },
+    { key: "roadmap",  label: "Roadmap",        icon: "🗺️" },
+    { key: "tips",     label: "Tips & Tricks",  icon: "💡" },
   ],
   activeKey = "chat",
   onSelect = () => {},
   className = "",
-  collapsed = false,          
-  onToggle = () => {},        
+  collapsed = false,
+  onToggle = () => {},
 }) {
   const [settingsOpen, setSettingsOpen] = useState(false);
 
@@ -35,7 +35,6 @@ export function Sidebar({
         {collapsed ? "▶" : "◀"}
       </button>
 
-
       {items.map((it) => {
         const active = it.key === activeKey;
         return (
@@ -47,7 +46,6 @@ export function Sidebar({
             className={`sb-item ${active ? "sb-item--active" : ""}`}
             title={collapsed ? it.label : undefined}
           >
-            {/* icon/initial for collapsed state */}
             <span className="sb-item-icon" aria-hidden>{it.icon}</span>
             <span className="sb-item-text">{it.label}</span>
           </button>
@@ -60,19 +58,16 @@ export function Sidebar({
         {/* Pop-up menu */}
         <div className={`sb-menu ${settingsOpen ? "open" : ""}`}>
           {[
-            { k: "profile", label: "Profile", icon: "👤" },
+            { k: "profile",  label: "Profile",  icon: "👤" },
             { k: "settings", label: "Settings", icon: "⚙️" },
-            { k: "logout", label: "Log out", icon: "↪" },
+            { k: "logout",   label: "Log out",  icon: "↪"  },
           ].map((m, idx) => (
             <div key={m.k} className={`sb-menu-row ${settingsOpen ? "in" : ""}`} style={{ ["--i"]: idx }}>
               <button
                 type="button"
                 className="sb-menu-btn"
                 aria-label={m.label}
-                onClick={() => {
-                  alert(`${m.label} clicked`);
-                  setSettingsOpen(false);
-                }}
+                onClick={() => { alert(`${m.label} clicked`); setSettingsOpen(false); }}
               >
                 <span aria-hidden>{m.icon}</span>
               </button>
@@ -81,8 +76,7 @@ export function Sidebar({
           ))}
         </div>
 
-
-        {/* Big circle (FAB) */}
+        {/* FAB */}
         <button
           type="button"
           aria-haspopup="menu"
@@ -97,5 +91,3 @@ export function Sidebar({
     </aside>
   );
 }
-
-export default Sidebar;
