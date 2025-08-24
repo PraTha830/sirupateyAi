@@ -18,18 +18,17 @@ SirupateyAI is an intelligent educational assistant platform designed to enhance
 ## 🔧 Technology Stack
 
 ### Frontend
-- **Framework**: React.js / Vue.js / Angular
-- **State Management**: Redux / Context API / Vuex
+- **Framework**: React.js 
 - **Styling**: Tailwind CSS / Styled Components / Material UI
-- **API Integration**: Axios / Fetch API
-- **Testing**: Jest / React Testing Library
+- **API Integration**: Fetch API
+
 
 ### Backend
-Our backend service is built with FastAPI and MongoDB. For more details, check out the [fastapi-student-assistant-mongo](https://github.com/PraTha830/fastapi-student-assistant-mongo) repository.
+Our backend service is built with FastAPI and MongoDB. For more details, check out the [fastapi-student-assistant-mongo]([https://github.com/PraTha830/fastapi-student-assistant-mongo](https://github.com/Diglet7781/fastapi-student-assistant-mongo/) repository.
 
 ## Backend: fastapi-student-assistant-mongo
 
-The [fastapi-student-assistant-mongo](https://github.com/PraTha830/fastapi-student-assistant-mongo) repository hosts our powerful backend service that powers SirupateyAI's intelligent features.
+The [fastapi-student-assistant-mongo](https://github.com/Diglet7781/fastapi-student-assistant-mongo/) repository hosts our powerful backend service that powers SirupateyAI's intelligent features.
 
 ### Key Backend Features
 
