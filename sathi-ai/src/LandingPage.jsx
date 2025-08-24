@@ -103,7 +103,7 @@ const LandingPage = () => {
             WebkitTextFillColor: 'transparent',
             lineHeight: '1.1'
           }}>
-            Sathi AI
+            Mitra AI
           </h1>
 
           <p style={{
@@ -236,7 +236,7 @@ const LandingPage = () => {
           WebkitBackgroundClip: 'text',
           WebkitTextFillColor: 'transparent'
         }}>
-          Sathi AI
+          Mitra AI
         </h2>
 
         <h3 style={{
@@ -257,7 +257,7 @@ const LandingPage = () => {
         }}>
           {currentView === 'login' 
             ? 'Sign in to your account' 
-            : 'Join Sathi AI today'
+            : 'Join Mitra AI today'
           }
         </p>
 

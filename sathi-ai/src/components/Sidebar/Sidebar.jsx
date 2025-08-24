@@ -3,10 +3,10 @@ import "./Sidebar.css";
 
 export default function Sidebar({
   items = [
-    { key: "chat",     label: "Sathi Chat",     icon: "💬" },
+    { key: "chat",     label: "Mitra Chat",     icon: "💬" },
     { key: "notes",    label: "Note Taker",     icon: "📝" },
     { key: "reminder", label: "Reminder",       icon: "⏰" },
-    { key: "calendar", label: "Calendar",       icon: "📅" },
+  
     { key: "career",   label: "Career Planner", icon: "🎯" },
     { key: "roadmap",  label: "Roadmap",        icon: "🗺️" },
     { key: "tips",     label: "Tips & Tricks",  icon: "💡" },
