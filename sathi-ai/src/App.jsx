@@ -19,6 +19,7 @@ import "./App.css";
 import "./index.css";
 import "./layout/layout.css";                                   // ✅ layout css
 import "./components/Roadmap/Roadmap.css";                      // ✅ roadmap css
+import VoiceTTS from "./components/Voice/VoiceChatStreaming";
 
 
 // ⬇️  Existing app UI, unchanged — just wrapped into AppShell
@@ -104,6 +105,7 @@ export default function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/chat" element={<AppShell />} />
         <Route path="/onboarding" element={<OnboardingPage />} />
+        <Route path="/voice" element={<VoiceTTS />} />
         {/* Optional: redirect unknown routes to landing */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
