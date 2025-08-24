@@ -13,6 +13,7 @@ import RightRail from "./components/common/RightRail";          // ✅
 import NotesPanel from "./components/common/NotesPanel";        // ✅
 import ChatDock from "./components/common/ChatDock";            // ✅
 import RoadmapPage from "./components/Roadmap/Roadmap";         // ✅ uses  Roadmap.jsx
+import Notes from "./components/Notes/Notes";
 
 import "./App.css";
 import "./index.css";
@@ -24,17 +25,6 @@ function AppShell() {
   const [collapsed, setCollapsed] = useState(false);
   const [active, setActive] = useState("chat"); // "chat" | "notes" | "reminder" | "calendar" | "career" | "roadmap" | "tips"
 
-  const rail = (
-    <RightRail
-      title={active === "notes" ? "Saved Notes" : "Quick Links"}
-      items={[
-        { label: "SEVIS I‑901",  meta: "Payment", onClick: () => window.open("https://fmjfee.com/", "_blank") },
-        { label: "DS‑160",       meta: "Form",    onClick: () => window.open("https://ceac.state.gov/CEAC/", "_blank") },
-        { label: "US Embassies", meta: "Lookup",  onClick: () => window.open("https://www.usembassy.gov/", "_blank") },
-      ]}
-    />
-  );
-
   return (
     <div className="app" data-sidebar={collapsed ? "collapsed" : "expanded"}>
       <Sidebar
@@ -45,9 +35,10 @@ function AppShell() {
       />
 
       <main className="app-main">
+        {active === "notes" && <Notes userId="user_123" />}
         {active === "roadmap" && <RoadmapPage userId="demo-user-1" />}
 
-        {active !== "roadmap" && (
+        {active !== "roadmap" && active !== "notes" && (
           <MainPage
             title={
               active === "chat" ? "Sathi Chat" :
@@ -78,15 +69,15 @@ function AppShell() {
                 </div>
               </section>
             }
-            rightRail={rail}
-            notes={<NotesPanel />}
-            chat={
-              <ChatDock
-                onSend={async (text) =>
-                  `You are on the "${active}" page. I received: "${text}"`
-                }
-              />
-            }
+            //rightRail={rail}
+            //notes={<Notes />}
+            // chat={
+            //   <ChatDock
+            //     onSend={async (text) =>
+            //       `You are on the "${active}" page. I received: "${text}"`
+            //     }
+            //   />
+            // }
           />
         )}
       </main>

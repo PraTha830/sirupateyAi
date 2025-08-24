@@ -1,0 +1,177 @@
+/* ---- Shell -------------------------------------------------------------- */
+
+.sn-shell {
+  width: clamp(380px, 34vw, 480px);
+  background: var(--card);
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: var(--shadow-2);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-sizing: border-box;   /* keep inner inputs from overflowing */
+}
+
+/* ---- Header ------------------------------------------------------------- */
+
+.sn-head {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+}
+.sn-head h3 {
+  margin: 0;
+  font-size: 1.15rem;
+  letter-spacing: .2px;
+}
+
+/* New note button */
+.sn-new {
+  border: none;
+  border-radius: 10px;
+  padding: 8px 12px;
+  cursor: pointer;
+  background: color-mix(in oklab, var(--card), black 8%);
+  color: var(--fg);
+  box-shadow: var(--shadow-1);
+  transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
+}
+.sn-new:hover { transform: translateY(-1px); box-shadow: var(--shadow-2); }
+.sn-new:active { transform: translateY(0); }
+
+/* ---- Search (embedded look, not floating) ------------------------------- */
+
+.sn-search input {
+  width: 95%;
+  padding: 10px 12px;
+  border-radius: 12px;
+  /* embedded: use subtle border + no outer shadow */
+  border: 1px solid color-mix(in oklab, var(--bg), white 14%);
+  background: color-mix(in oklab, var(--card), var(--bg) 60%);
+  color: var(--fg);
+  box-shadow: none;
+  outline: none;
+  transition: border-color .12s ease, box-shadow .12s ease, background .12s ease;
+}
+.sn-search input::placeholder { color: var(--fg-muted); }
+.sn-search input:focus-visible {
+  border-color: #22d3ee;
+  /* inner focus ring so it doesn't look like a floating element */
+  box-shadow: inset 0 0 0 2px #22d3ee33;
+}
+
+/* ---- List --------------------------------------------------------------- */
+
+.sn-list {
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 320px;
+  max-height: 74vh;
+  /* padding on ALL sides so selection ring isn't clipped */
+  padding: 8px 10px 8px 8px; /* extra on right for scrollbar */
+}
+
+/* nicer scrollbar (Chromium/WebKit) */
+.sn-list::-webkit-scrollbar { width: 10px; }
+.sn-list::-webkit-scrollbar-thumb {
+  background: color-mix(in oklab, var(--card), black 20%);
+  border-radius: 10px;
+}
+.sn-list::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in oklab, var(--card), black 28%);
+}
+
+.sn-empty {
+  color: var(--fg-muted);
+  padding: 10px;
+  text-align: center;
+}
+
+/* ---- Items -------------------------------------------------------------- */
+
+.sn-item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: start;
+  gap: 8px;
+  background: color-mix(in oklab, var(--card), black 6%);
+  border-radius: 14px;
+  padding: 14px;
+  box-shadow: var(--shadow-1);
+  transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
+}
+
+/* hover = lift, active = inner blue ring that isn't clipped */
+.sn-item:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-2);
+}
+.sn-item.active {
+  /* use inner ring instead of outline so overflow doesn't clip it */
+  box-shadow:
+    inset 0 0 0 2px #22d3ee,   /* blue ring (inside the element box) */
+    var(--shadow-2);
+  background: color-mix(in oklab, var(--card), black 3%);
+}
+
+/* clickable area */
+.sn-open {
+  text-align: left;
+  background: none;
+  border: none;
+  color: var(--fg);
+  cursor: pointer;
+  width: 100%;
+}
+
+/* title: larger + two-line clamp */
+.sn-title {
+  font-weight: 650;
+  font-size: 1.05rem;
+  line-height: 1.25;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* show up to 2 lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  max-width: 28rem;
+}
+
+/* tags / meta line */
+.sn-meta {
+  margin-top: 4px;
+  font-size: 0.88rem;
+  color: var(--fg-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* delete: bigger touch target with subtle hover */
+.sn-del {
+  background: transparent;
+  border: none;
+  color: var(--fg);
+  cursor: pointer;
+  border-radius: 10px;
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  transition: background .12s ease, transform .12s ease;
+}
+.sn-del:hover {
+  background: color-mix(in oklab, var(--card), black 10%);
+  transform: scale(1.02);
+}
+
+/* ---- Motion preferences -------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .sn-new,
+  .sn-item,
+  .sn-del {
+    transition: none;
+  }
+}
