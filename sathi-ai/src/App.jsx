@@ -12,7 +12,8 @@ import MainPage from "./layout/Mainpage";                       // ✅
 import RightRail from "./components/common/RightRail";          // ✅
 import NotesPanel from "./components/common/NotesPanel";        // ✅
 import ChatDock from "./components/common/ChatDock";            // ✅
-import RoadmapPage from "./components/Roadmap/Roadmap";         // ✅ uses  Roadmap.jsx
+import RoadmapPage from "./components/Roadmap/Roadmap";         // ✅ uses  Roadmap.jsx (existing)
+import CareerPathPage from "./components/Career/CareerPathPage"; // ✅ NEW: Career Path UI
 import Notes from "./components/Notes/Notes";
 import OnboardingPage from "./components/Onboarding/OnboardingPage";     // ✅ Fixed import
 
@@ -39,8 +40,9 @@ function AppShell() {
       <main className="app-main">
         {active === "notes" && <Notes userId="user_123" />}
         {active === "roadmap" && <RoadmapPage userId="demo-user-1" />}
+        {active === "career" && <CareerPathPage />}
 
-        {active !== "roadmap" && active !== "notes" && (
+        {active !== "roadmap" && active !== "notes" && active !== "career" && (
           <MainPage
             title={
               active === "chat" ? "Sathi Chat" :
