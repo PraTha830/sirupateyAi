@@ -106,8 +106,8 @@ export default function RoadmapPage({ userId = "demo-user-1" }) {
       main={<RoadmapCanvas data={data} onEdit={applyStageUpdate} Arrow={Arrow} />}
       rightRail={rail}
       // show chat transcript in NotesPanel; keep a freeform note box too
-      notes={<NotesPanel entries={entries} value={freeNote} onChange={setFreeNote} />}
-      chat={<ChatDock onSend={handleChat} />}
+      //notes={<NotesPanel entries={entries} value={freeNote} onChange={setFreeNote} />}
+      //chat={<ChatDock onSend={handleChat} />}
     />
   );
 }

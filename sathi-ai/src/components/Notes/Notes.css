@@ -1,0 +1,97 @@
+/* ===== Current Note container ========================================== */
+.note-editor {
+  --gap: 14px;
+
+  /* Use the sidebar's green as the card bg */
+  background: var(--sb-active-bg);
+  color: var(--sb-active-text);
+  border-radius: 18px;
+  box-shadow: var(--shadow-2);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+  box-sizing: border-box;
+
+  /* Make it feel bigger */
+  min-height: 50vh;               /* taller */
+}
+
+/* Header */
+.note-editor__header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+}
+.note-editor__title {
+  margin: 0;
+  font-size: 2rem;                /* larger title */
+  line-height: 1.1;
+}
+.note-editor__actions {
+  display: inline-flex;
+  gap: 10px;
+}
+.note-editor__actions button,
+.note-quick button {
+  border: none;
+  border-radius: 12px;
+  padding: 10px 14px;
+  background: color-mix(in oklab, var(--sb-active-bg), black 8%); /* harmonized */
+  color: var(--sb-active-text);
+  box-shadow: var(--shadow-1);
+  cursor: pointer;
+}
+
+/* Keep all fields aligned and inside the card */
+.note-editor > .note-field,
+.note-editor > .note-body,
+.note-editor > .note-quick,
+.note-editor > .note-tags {
+  max-width: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Subtle, readable field surfaces on green background */
+.note-field,
+.note-quick input,
+.note-tags {
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid color-mix(in oklab, white, black 14%);
+  background: color-mix(in oklab, white 86%, var(--sb-active-bg) 14%);
+  color: #0b1820;                 /* readable on light surface */
+  box-shadow: var(--shadow-1);
+  margin: 0;
+  font-size: 1rem;
+}
+
+/* Main body: bigger area */
+.note-body {
+  padding: 16px;
+  border-radius: 14px;
+  border: 1px solid color-mix(in oklab, white, black 14%);
+  background: color-mix(in oklab, white 86%, var(--sb-active-bg) 14%);
+  color: #0b1820;
+  box-shadow: var(--shadow-1);
+  resize: vertical;
+  min-height: 420px;              /* taller editor */
+  margin: 0;
+  font-size: 1rem;
+}
+
+/* Quick task row */
+.note-quick {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  margin: 0;
+}
+
+.note-empty {
+  color: color-mix(in oklab, var(--sb-active-text), black 30%);
+  padding: 6px 2px 0;
+}

@@ -87,4 +87,5 @@ a:hover { text-decoration: underline; }
   transition: margin-left 200ms ease;
   min-height: 100vh;
   box-sizing: border-box;
+  padding-bottom: 96px;
 }
