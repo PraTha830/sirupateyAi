@@ -13,7 +13,8 @@ import RightRail from "./components/common/RightRail";          // ✅
 import NotesPanel from "./components/common/NotesPanel";        // ✅
 import ChatDock from "./components/common/ChatDock";            // ✅
 import RoadmapPage from "./components/Roadmap/Roadmap";         // ✅ uses  Roadmap.jsx (existing)
-import CareerPathPage from "./components/Career/CareerPathPage"; // ✅ NEW: Career Path UI
+import CareerPathPage from "./components/Career/CareerPathPage"; // ✅ Career Path UI
+import ReminderPage from "./components/Reminder/ReminderPage";   // ✅ NEW: Reminder System
 import Notes from "./components/Notes/Notes";
 import OnboardingPage from "./components/Onboarding/OnboardingPage";     // ✅ Fixed import
 
@@ -41,8 +42,9 @@ function AppShell() {
         {active === "notes" && <Notes userId="user_123" />}
         {active === "roadmap" && <RoadmapPage userId="demo-user-1" />}
         {active === "career" && <CareerPathPage />}
+        {active === "reminder" && <ReminderPage />}
 
-        {active !== "roadmap" && active !== "notes" && active !== "career" && (
+        {active !== "roadmap" && active !== "notes" && active !== "career" && active !== "reminder" && (
           <MainPage
             title={
               active === "chat" ? "Sathi Chat" :
@@ -73,15 +75,6 @@ function AppShell() {
                 </div>
               </section>
             }
-            //rightRail={rail}
-            //notes={<Notes />}
-            // chat={
-            //   <ChatDock
-            //     onSend={async (text) =>
-            //       `You are on the "${active}" page. I received: "${text}"`
-            //     }
-            //   />
-            // }
           />
         )}
       </main>
