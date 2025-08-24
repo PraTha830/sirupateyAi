@@ -14,7 +14,8 @@ import NotesPanel from "./components/common/NotesPanel";        // ✅
 import ChatDock from "./components/common/ChatDock";            // ✅
 import RoadmapPage from "./components/Roadmap/Roadmap";         // ✅ uses  Roadmap.jsx (existing)
 import CareerPathPage from "./components/Career/CareerPathPage"; // ✅ Career Path UI
-import ReminderPage from "./components/Reminder/ReminderPage";   // ✅ NEW: Reminder System
+import ReminderPage from "./components/Reminder/ReminderPage";   // ✅ Reminder System
+import TipsPage from "./components/Tips/TipsPage";               // ✅ NEW: Smart Tips Dashboard
 import Notes from "./components/Notes/Notes";
 import OnboardingPage from "./components/Onboarding/OnboardingPage";     // ✅ Fixed import
 
@@ -43,8 +44,9 @@ function AppShell() {
         {active === "roadmap" && <RoadmapPage userId="demo-user-1" />}
         {active === "career" && <CareerPathPage />}
         {active === "reminder" && <ReminderPage />}
+        {active === "tips" && <TipsPage />}
 
-        {active !== "roadmap" && active !== "notes" && active !== "career" && active !== "reminder" && (
+        {active !== "roadmap" && active !== "notes" && active !== "career" && active !== "reminder" && active !== "tips" && (
           <MainPage
             title={
               active === "chat" ? "Sathi Chat" :
