@@ -104,10 +104,10 @@ export default function RoadmapPage({ userId = "demo-user-1" }) {
       subtitle="Track your F‑1 visa process and career path. Cards update as you chat."
       headerRight={<div className="logo-circle">Logo</div>}
       main={<RoadmapCanvas data={data} onEdit={applyStageUpdate} Arrow={Arrow} />}
-      rightRail={rail}
+      //rightRail={rail}
       // show chat transcript in NotesPanel; keep a freeform note box too
-      notes={<NotesPanel entries={entries} value={freeNote} onChange={setFreeNote} />}
-      chat={<ChatDock onSend={handleChat} />}
+      //notes={<NotesPanel entries={entries} value={freeNote} onChange={setFreeNote} />}
+      //chat={<ChatDock onSend={handleChat} />}
     />
   );
 }

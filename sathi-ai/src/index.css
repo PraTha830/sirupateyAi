@@ -87,4 +87,17 @@ a:hover { text-decoration: underline; }
   transition: margin-left 200ms ease;
   min-height: 100vh;
   box-sizing: border-box;
+  padding-bottom: 96px;
+}
+
+.right-rail {
+  width: clamp(320px, 30vw, 380px);
+  position: sticky;
+  top: 24px;
+  z-index: 2;                /* low enough to not visually cover cards */
+}
+
+.main-grid,
+.app-main .main-grid {
+  column-gap: 48px;          /* was smaller */
 }

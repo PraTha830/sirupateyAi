@@ -32,7 +32,7 @@ export default function MainPage({
 
       <div className="mp__grid">
         <div className="mp__main">{main}</div>
-        {/* {rightRail && <aside className="mp__rail">{rightRail}</aside>} */}
+        {rightRail && <aside className="mp__rail">{rightRail}</aside>}
       </div>
 
       {notes && <div className="mp__notes">{notes}</div>}
