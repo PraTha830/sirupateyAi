@@ -14,11 +14,13 @@ import NotesPanel from "./components/common/NotesPanel";        // ✅
 import ChatDock from "./components/common/ChatDock";            // ✅
 import RoadmapPage from "./components/Roadmap/Roadmap";         // ✅ uses  Roadmap.jsx
 import Notes from "./components/Notes/Notes";
+import OnboardingPage from "./components/Onboarding/OnboardingPage";     // ✅ Fixed import
 
 import "./App.css";
 import "./index.css";
 import "./layout/layout.css";                                   // ✅ layout css
 import "./components/Roadmap/Roadmap.css";                      // ✅ roadmap css
+
 
 // ⬇️  Existing app UI, unchanged — just wrapped into AppShell
 function AppShell() {
@@ -64,7 +66,7 @@ function AppShell() {
                     {active.replace("-", " ")}
                   </h2>
                   <p className="muted" style={{ marginTop: 6 }}>
-                    (Put the {active} page’s main component here)
+                    (Put the {active} page's main component here)
                   </p>
                 </div>
               </section>
@@ -92,6 +94,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/chat" element={<AppShell />} />
+        <Route path="/onboarding" element={<OnboardingPage />} />
         {/* Optional: redirect unknown routes to landing */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
