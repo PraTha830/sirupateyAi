@@ -1163,7 +1163,7 @@ const OnboardingPage = () => {
     <div className="onboarding-container">
       <div className="onboarding-card">
         <div className="header">
-          <h1 className="main-title">Welcome to Sathi AI</h1>
+          <h1 className="main-title">Welcome to Mitra AI</h1>
           <p className="subtitle">
             {showReview ? 'Review your information' : "Let's personalize your experience"}
           </p>

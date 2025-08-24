@@ -15,7 +15,8 @@ import ChatDock from "./components/common/ChatDock";            // ✅
 import RoadmapPage from "./components/Roadmap/Roadmap";         // ✅ uses  Roadmap.jsx (existing)
 import CareerPathPage from "./components/Career/CareerPathPage"; // ✅ Career Path UI
 import ReminderPage from "./components/Reminder/ReminderPage";   // ✅ Reminder System
-import TipsPage from "./components/Tips/TipsPage";               // ✅ NEW: Smart Tips Dashboard
+import TipsPage from "./components/Tips/TipsPage";               // ✅ Smart Tips Dashboard
+import MitraChat from "./components/Chat/MitraChat";            // ✅ NEW: Friendly Chat Interface
 import Notes from "./components/Notes/Notes";
 import OnboardingPage from "./components/Onboarding/OnboardingPage";     // ✅ Fixed import
 
@@ -45,11 +46,13 @@ function AppShell() {
         {active === "career" && <CareerPathPage />}
         {active === "reminder" && <ReminderPage />}
         {active === "tips" && <TipsPage />}
+        {active === "chat" && <MitraChat />} {/* Use MitraChat for chat tab */}
 
-        {active !== "roadmap" && active !== "notes" && active !== "career" && active !== "reminder" && active !== "tips" && (
+        {active !== "roadmap" && active !== "notes" && active !== "career" && 
+         active !== "reminder" && active !== "tips" && active !== "chat" && (
           <MainPage
             title={
-              active === "chat" ? "Sathi Chat" :
+              active === "chat" ? "Mitra Chat" : // Changed to "Mitra Chat" as requested
               active === "notes" ? "Note Taker" :
               active === "reminder" ? "To‑Dos / Reminders" :
               active === "calendar" ? "Calendar" :
