@@ -186,3 +186,11 @@ Project Link: [https://github.com/PraTha830/sirupateyAi](https://github.com/PraT
 - [React.js](https://reactjs.org/)
 - [OpenAI](https://openai.com/) for AI assistance
 - All contributors and supporters of this project
+- 
+
+Team members and roles
+
+Prajwal Thapaliya - Frontend 
+Kiran Thapa - Backend
+Prajita Shrestha - Frontend
+Urusha Thapa - UI Design + Requirements Gathering
