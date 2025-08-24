@@ -16,7 +16,7 @@ import RoadmapPage from "./components/Roadmap/Roadmap";         // ✅ uses  Roa
 import CareerPathPage from "./components/Career/CareerPathPage"; // ✅ NEW: Career Path UI
 import Notes from "./components/Notes/Notes";
 import OnboardingPage from "./components/Onboarding/OnboardingPage";     // ✅ Fixed import
-import TurnVoiceAssistant from "./components/Voice/TurnVoiceAssistant"; // ✅ Fixed import
+import VoiceAssistant from "./components/Voice/VoiceAssistant"; // ✅ Fixed import
 
 import "./App.css";
 import "./index.css";
@@ -98,7 +98,7 @@ export default function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/chat" element={<AppShell />} />
         <Route path="/onboarding" element={<OnboardingPage />} />
-        <Route path="/voice" element={<TurnVoiceAssistant />} />
+        <Route path="/voice" element={<VoiceAssistant />} />
         {/* Optional: redirect unknown routes to landing */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
